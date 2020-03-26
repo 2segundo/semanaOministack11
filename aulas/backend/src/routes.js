@@ -1,17 +1,15 @@
 const express = require('express');
 
+const OngController = require('./controllers/OngController');
+const IncidentController = require('./controllers/IncidentController');
+
 const routes = express.Router();
 
-routes.post('/users', (request, response) => { // requisiçao , resposta
+routes.get('/ongs', OngController.index);
+routes.post('/ongs', OngController.create);
 
-    const body = request.body;    
-    console.log(body)
-    //return response.send ('Hello World') // envia mensagem ou resposta
-    return response.json({ 
-        evento: 'Semana Oministack 11.0',
-        aluno: 'Vitor Lopes'
-    }) //retorna resposta no formato de json
-    
-});
+routes.get('/incidents', IncidentController.index);
+routes.post('/incidents', IncidentController.create);
+routes.delete('/incidents/:id', IncidentController.delete);
 
 module.exports = routes;
